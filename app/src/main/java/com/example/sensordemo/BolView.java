@@ -38,6 +38,8 @@ public class BolView extends View {
         super(context);
         ballPaint=new Paint();
         ballPaint.setColor(Color.RED);
+        redBalls=new Paint();
+        redBalls.setColor(Color.BLACK);
 
 
 
@@ -90,7 +92,7 @@ public class BolView extends View {
 
 
 
-        canvas.drawText("Punkty" + punkty,viewHight/2,viewWidth/2,ballPaint);
+        canvas.drawText("Punkty " + punkty,viewWidth/2-100,viewHight/2,ballPaint);
         ballPaint.setTextSize(32);
         invalidate();
     }
