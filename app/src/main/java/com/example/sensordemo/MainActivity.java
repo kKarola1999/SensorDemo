@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         
         ballView=new BolView(this);
-        gateView = new GateView(this);
+        //gateView = new GateView(this);
         setContentView(ballView);
-        setContentView(gateView);
+        //setContentView(gateView);
         sensorManager=(SensorManager) getSystemService(SENSOR_SERVICE);
         sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             ballView.x= ballView.x-(int)values[0]*frameTime;
             ballView.y=ballView.y +(int)values[1]*frameTime;
             ballView.onSensorEvent(event);
-            gateView.checkIfScore(ballView.getX(),ballView.getY());
+           // gateView.checkIfScore(ballView.getX(),ballView.getY());
         }
 
 

@@ -10,10 +10,16 @@ import android.view.View;
 public class BolView extends View {
 
     private Paint ballPaint;
+    private Paint redBalls;
+
+
     public float x;
     public float y;
     private int viewWidth;
     private int viewHight;
+    private int punkty;
+    public int ballPointX=100;
+    public int ballPointY=200;
 
     @Override
     public float getX() {
@@ -34,6 +40,7 @@ public class BolView extends View {
         ballPaint.setColor(Color.RED);
 
 
+
     }
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -50,6 +57,8 @@ public class BolView extends View {
         }
         if(x >= viewWidth - CIRCLE_RADIUS){
             x = viewWidth - CIRCLE_RADIUS;
+
+
         }
 
         if(y <= CIRCLE_RADIUS){
@@ -57,6 +66,13 @@ public class BolView extends View {
         }
         if(y >= viewHight - CIRCLE_RADIUS){
             y = viewHight - CIRCLE_RADIUS;
+
+        }
+
+        if(x==ballPointX && y==ballPointY){
+            punkty++;
+
+
         }
     }
 
@@ -66,8 +82,15 @@ public class BolView extends View {
 
 
 
-
+        canvas.drawCircle(ballPointX,ballPointY,CIRCLE_RADIUS,ballPaint);
         canvas.drawCircle(x,y,CIRCLE_RADIUS,ballPaint);
+
+       // canvas.drawCircle(ballPointX,ballPointY,CIRCLE_RADIUS,ballPaint);
+
+
+
+
+        canvas.drawText("Punkty" + punkty,viewHight/2,viewWidth/2,ballPaint);
         ballPaint.setTextSize(32);
         invalidate();
     }

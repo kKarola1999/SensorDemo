@@ -45,6 +45,8 @@ public class GateView extends View {
         super.onDraw(canvas);
         float x = (int) (Math.random()*(viewWidth));
         float y = (int) (Math.random()*viewHight);
+        canvas.drawText("Punkty" + Score,viewHight/2,viewWidth/2,gatePaint);
+        gatePaint.setTextSize(50);
 
         canvas.drawCircle(x,y,GATE_RADIUS,gatePaint);
     }
