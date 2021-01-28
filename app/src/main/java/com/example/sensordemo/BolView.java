@@ -5,12 +5,17 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.hardware.SensorEvent;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class BolView extends View {
 
     private Paint ballPaint;
     private Paint redBalls;
+    private Paint text;
+
 
 
     public float x;
@@ -18,9 +23,9 @@ public class BolView extends View {
     private int viewWidth;
     private int viewHight;
     private int punkty;
-    public int ballPointX=200;
-    public int ballPointY=600;
-    private  static  final int CIRCLE_RADIUS = 50;
+    public int ballPointX = 200;
+    public int ballPointY = 600;
+    private static final int CIRCLE_RADIUS = 50;
 
     @Override
     public float getX() {
@@ -33,51 +38,52 @@ public class BolView extends View {
     }
 
 
-
-
-
     public BolView(Context context) {
         super(context);
-        ballPaint=new Paint();
+        ballPaint = new Paint();
         ballPaint.setColor(Color.RED);
-        redBalls=new Paint();
-        redBalls.setColor(Color.BLACK);
-
-
+        redBalls = new Paint();
+        redBalls.setColor(Color.GREEN);
+        redBalls.setStyle(Paint.Style.STROKE);
+        text = new Paint();
+        text.setTextSize(60);
+        text.setAntiAlias(true);
+        text.setColor(Color.WHITE);
 
 
     }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        viewWidth=w;
-        viewHight=h;
+        viewWidth = w;
+        viewHight = h;
     }
 
-    public void onSensorEvent(SensorEvent event){
+    public void onSensorEvent(SensorEvent event) {
 
 
-        if(x <= CIRCLE_RADIUS){
+        if (x <= CIRCLE_RADIUS) {
             x = CIRCLE_RADIUS;
         }
-        if(x >= viewWidth - CIRCLE_RADIUS){
+        if (x >= viewWidth - CIRCLE_RADIUS) {
             x = viewWidth - CIRCLE_RADIUS;
 
 
         }
 
-        if(y <= CIRCLE_RADIUS){
+        if (y <= CIRCLE_RADIUS) {
             y = CIRCLE_RADIUS;
         }
-        if(y >= viewHight - CIRCLE_RADIUS){
+        if (y >= viewHight - CIRCLE_RADIUS) {
             y = viewHight - CIRCLE_RADIUS;
 
         }
 
-        if((x>ballPointX-CIRCLE_RADIUS&&x<ballPointX+CIRCLE_RADIUS ) && (y>ballPointY-CIRCLE_RADIUS)&&y<ballPointY+CIRCLE_RADIUS){
+        if ((x > ballPointX - CIRCLE_RADIUS && x < ballPointX + CIRCLE_RADIUS) && (y > ballPointY - CIRCLE_RADIUS) && y < ballPointY + CIRCLE_RADIUS) {
             punkty++;
-            ballPointX = (int) (Math.random()*(viewWidth));
-            ballPointY = (int) (Math.random()*viewHight);
+            ballPointX = (int) (Math.random() * (viewWidth - CIRCLE_RADIUS * 2) + CIRCLE_RADIUS * 2);
+            ballPointY = (int) (Math.random() * viewHight - CIRCLE_RADIUS * 2) + CIRCLE_RADIUS * 2;
 
 
         }
@@ -88,13 +94,11 @@ public class BolView extends View {
         super.onDraw(canvas);
 
 
+        canvas.drawCircle(ballPointX, ballPointY, CIRCLE_RADIUS, redBalls);
+        canvas.drawCircle(x, y, CIRCLE_RADIUS, ballPaint);
 
+        canvas.drawText("Punkty " + punkty, viewWidth / 2 - 100, viewHight / 2, text);
 
-        canvas.drawCircle(ballPointX,ballPointY,CIRCLE_RADIUS,redBalls);
-        canvas.drawCircle(x,y,CIRCLE_RADIUS,ballPaint);
-
-        canvas.drawText("Punkty " + punkty,viewWidth/2-100,viewHight/2,redBalls);
-        ballPaint.setTextSize(60);
         invalidate();
     }
 
