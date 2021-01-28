@@ -14,8 +14,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager sensorManager;
     private static final String TAG="EDUIB";
     private long startTime;
-    private BolView ballView;
-    private GateView gateView;
+    private BallView ballView;
     private int frameTime=5;
 
 
@@ -24,10 +23,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        ballView=new BolView(this);
-        //gateView = new GateView(this);
+        ballView=new BallView(this);
+
         setContentView(ballView);
-        //setContentView(gateView);
         sensorManager=(SensorManager) getSystemService(SENSOR_SERVICE);
         sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
@@ -45,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             ballView.x= ballView.x-(int)values[0]*frameTime;
             ballView.y=ballView.y +(int)values[1]*frameTime;
             ballView.onSensorEvent(event);
-           // gateView.checkIfScore(ballView.getX(),ballView.getY());
         }
 
 

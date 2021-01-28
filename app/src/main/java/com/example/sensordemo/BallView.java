@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class BolView extends View {
+public class BallView extends View {
 
     private Paint ballPaint;
     private Paint redBalls;
@@ -38,17 +38,18 @@ public class BolView extends View {
     }
 
 
-    public BolView(Context context) {
+    public BallView(Context context) {
         super(context);
         ballPaint = new Paint();
         ballPaint.setColor(Color.RED);
         redBalls = new Paint();
         redBalls.setColor(Color.GREEN);
         redBalls.setStyle(Paint.Style.STROKE);
+        redBalls.setStrokeWidth(15);
         text = new Paint();
         text.setTextSize(60);
         text.setAntiAlias(true);
-        text.setColor(Color.WHITE);
+        text.setColor(Color.BLUE);
 
 
     }
@@ -96,7 +97,6 @@ public class BolView extends View {
 
         canvas.drawCircle(ballPointX, ballPointY, CIRCLE_RADIUS, redBalls);
         canvas.drawCircle(x, y, CIRCLE_RADIUS, ballPaint);
-
         canvas.drawText("Punkty " + punkty, viewWidth / 2 - 100, viewHight / 2, text);
 
         invalidate();
