@@ -15,6 +15,15 @@ public class BolView extends View {
     private int viewWidth;
     private int viewHight;
 
+    @Override
+    public float getX() {
+        return x;
+    }
+
+    @Override
+    public float getY() {
+        return y;
+    }
 
     private static final int CIRCLE_RADIUS=50;
 
@@ -22,7 +31,7 @@ public class BolView extends View {
     public BolView(Context context) {
         super(context);
         ballPaint=new Paint();
-        ballPaint.setColor(Color.BLACK);
+        ballPaint.setColor(Color.RED);
 
 
     }
