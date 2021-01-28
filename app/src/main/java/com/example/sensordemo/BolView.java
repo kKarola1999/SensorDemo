@@ -18,8 +18,9 @@ public class BolView extends View {
     private int viewWidth;
     private int viewHight;
     private int punkty;
-    public int ballPointX=100;
-    public int ballPointY=200;
+    public int ballPointX=200;
+    public int ballPointY=600;
+    private  static  final int CIRCLE_RADIUS = 50;
 
     @Override
     public float getX() {
@@ -31,7 +32,8 @@ public class BolView extends View {
         return y;
     }
 
-    private static final int CIRCLE_RADIUS=50;
+
+
 
 
     public BolView(Context context) {
@@ -40,6 +42,7 @@ public class BolView extends View {
         ballPaint.setColor(Color.RED);
         redBalls=new Paint();
         redBalls.setColor(Color.BLACK);
+
 
 
 
@@ -71,7 +74,7 @@ public class BolView extends View {
 
         }
 
-        if(x==ballPointX && y==ballPointY){
+        if((x>ballPointX-CIRCLE_RADIUS&&x<ballPointX+CIRCLE_RADIUS ) && (y>ballPointY-CIRCLE_RADIUS)&&y<ballPointY+CIRCLE_RADIUS){
             punkty++;
 
 
@@ -82,18 +85,15 @@ public class BolView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        //ballPointX = (int) (Math.random()*(viewWidth));
+        //ballPointY = (int) (Math.random()*viewHight);
 
 
-        canvas.drawCircle(ballPointX,ballPointY,CIRCLE_RADIUS,ballPaint);
+        canvas.drawCircle(ballPointX,ballPointY,CIRCLE_RADIUS,redBalls);
         canvas.drawCircle(x,y,CIRCLE_RADIUS,ballPaint);
 
-       // canvas.drawCircle(ballPointX,ballPointY,CIRCLE_RADIUS,ballPaint);
-
-
-
-
-        canvas.drawText("Punkty " + punkty,viewWidth/2-100,viewHight/2,ballPaint);
-        ballPaint.setTextSize(32);
+        canvas.drawText("Punkty " + punkty,viewWidth/2-100,viewHight/2,redBalls);
+        ballPaint.setTextSize(60);
         invalidate();
     }
 
