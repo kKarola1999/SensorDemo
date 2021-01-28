@@ -76,6 +76,8 @@ public class BolView extends View {
 
         if((x>ballPointX-CIRCLE_RADIUS&&x<ballPointX+CIRCLE_RADIUS ) && (y>ballPointY-CIRCLE_RADIUS)&&y<ballPointY+CIRCLE_RADIUS){
             punkty++;
+            ballPointX = (int) (Math.random()*(viewWidth));
+            ballPointY = (int) (Math.random()*viewHight);
 
 
         }
@@ -85,8 +87,7 @@ public class BolView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        //ballPointX = (int) (Math.random()*(viewWidth));
-        //ballPointY = (int) (Math.random()*viewHight);
+
 
 
         canvas.drawCircle(ballPointX,ballPointY,CIRCLE_RADIUS,redBalls);
