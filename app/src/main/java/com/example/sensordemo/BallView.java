@@ -26,6 +26,7 @@ public class BallView extends View {
     public int ballPointX = 200;
     public int ballPointY = 600;
     private static final int CIRCLE_RADIUS = 50;
+    private SoundEffect sound;
 
     @Override
     public float getX() {
@@ -50,6 +51,7 @@ public class BallView extends View {
         text.setTextSize(60);
         text.setAntiAlias(true);
         text.setColor(Color.BLUE);
+        sound=new SoundEffect(context);
 
 
     }
@@ -85,6 +87,7 @@ public class BallView extends View {
             punkty++;
             ballPointX = (int) (Math.random() * (viewWidth - CIRCLE_RADIUS * 2) + CIRCLE_RADIUS * 2);
             ballPointY = (int) (Math.random() * viewHight - CIRCLE_RADIUS * 2) + CIRCLE_RADIUS * 2;
+            sound.playHitSound();
 
 
         }
